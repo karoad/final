@@ -7,7 +7,7 @@ import Project3PageView from './containers/Project3PageView'
 import Project3DisclaimerView from './containers/Project3DisclaimerView'
 import Project3ResultsView from './containers/Project3ResultsView'
 import Project4PageView from './containers/Project4PageView'
-import Project5PageView from './containers/Project5PageView'
+import FinalPageView from './containers/FinalPageView'
 
 const BaseRouter = () => (
     <div>
@@ -18,7 +18,7 @@ const BaseRouter = () => (
         <Route exact path='/projects/cs4802/project3/experiment' component={Project3PageView}/>
         <Route exact path='/projects/cs4802/project3/results' component={Project3ResultsView}/>
         <Route exact path='/project4' component={Project4PageView}/>
-        <Route exact path='/project5' component={Project5PageView}/>
+        <Route exact path='/project5' component={FinalPageView}/>
     </div>
 );
 
