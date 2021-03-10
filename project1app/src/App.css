@@ -1,0 +1,27 @@
+html, body{
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.App {
+  text-align: center;
+}
+
+.navigationMenu{
+  display: flex;
+  justify-content: center;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+li{
+  display: block;
+}
