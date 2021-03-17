@@ -75,11 +75,10 @@ class FinalPageView extends React.Component{
             <div>
                 <HeaderBar/>
                 <h1>Title</h1>
-                <div ref={this.svgTest1}></div>
-                
+                <USAMap></USAMap>                
                 <FadeInSection>
                   <h2>Subtitle</h2>
-                  <div ref={this.svgTest2}></div>
+                <IndustryEffects></IndustryEffects>
                 </FadeInSection>
                 <FadeInSection>
                   <h2>Subtitle</h2>

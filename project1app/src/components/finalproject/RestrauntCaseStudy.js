@@ -23,11 +23,6 @@ class RestrauntCaseStudy extends Component {
     let h = windowHeight / 2; 
     //Create Background Region
     //Access D3 this way, use width and height to size dynamically
-    let accessToRef = d3.select(this.myRef.current).append("svg").append("circle")
-    d3.select(this.myRef.current).selectAll("circle")
-    .attr("r", function() { return h/6 })
-    .attr("fill", "red")
-    .attr('transform', 'translate(' + w/4+ ',' + h/6  + ')');
   }
 
   componentWillUnmount() {
@@ -37,7 +32,6 @@ class RestrauntCaseStudy extends Component {
   render() {
     return <div>
               <h4>RestrauntCaseStudy Component</h4>
-              <div className="circleDiv" ref={this.myRef}></div>  
            </div>
   }
 } 
