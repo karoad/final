@@ -79,7 +79,7 @@ class FinalPageView extends React.Component{
                 
                 <FadeInSection>
                   <h2>Subtitle</h2>
-                  <div ref={this.svgTest2}></div>
+                <RestrauntCaseStudy></RestrauntCaseStudy>
                 </FadeInSection>
                 <FadeInSection>
                   <h2>Subtitle</h2>
