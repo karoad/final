@@ -33,6 +33,7 @@ let createMap = (states, cities, w, h) => {
 
   var svg2 = d3.select("#frame2")
 
+  var titleDiv = d3.select("#title")
 
   // draw country boundaries
 
@@ -104,7 +105,6 @@ let createMap = (states, cities, w, h) => {
   var zoomSettings = d3.zoomIdentity
     .translate(w/2, h/2)
     .scale(700);
-
   svg
     .call(mapZoom)
     .call(mapZoom.transform, zoomSettings);
@@ -135,7 +135,7 @@ let createMap = (states, cities, w, h) => {
        .call(d3.axisLeft(yScale).tickSize(2));
 
        barcharts.append('g')
-       .style("font-size", "2.5px")
+       .style("font-size", "10px")
        .style("stroke-width", 0.25)
        .style("opacity", 0.7)
        .attr('transform', 'translate('+(w/2)+', ' +(height/10)+')')
@@ -166,17 +166,26 @@ let createMap = (states, cities, w, h) => {
        //chart labels 
 
       barcharts.append('text')
-       .attr('x', 60)
-       .attr('y', 92 )
+       .attr('x', w/5 + w/8)
+       .attr('y', height + height/5 )
        .style('text-anchor', "middle")
-       .style('font-size', 3)
+       .style('font-size', 15)
+       .style('font-family', "sans-serif")
+       .style('font-weight', 'bold')
+       .text('Year')
+
+       barcharts.append('text')
+       .attr('x', w/2 + w/8)
+       .attr('y', height + height/5 )
+       .style('text-anchor', "middle")
+       .style('font-size', 15)
        .style('font-family', "sans-serif")
        .style('font-weight', 'bold')
        .text('Year')
 
        var title1 = barcharts.append('text')
        .attr('x', w/5 + w/8)
-       .attr('y', 15 )
+       .attr('y', 15)
        .style('text-anchor', "middle")
        .style('font-size', 15)
        .style('font-family', "sans-serif")
@@ -266,17 +275,51 @@ class RestrauntCaseStudy extends Component {
     let h = windowHeight / 2; 
     //Create Background Region
     //Access D3 this way, use width and height to size dynamically
+    let accessToRef = d3.select(this.myRef.current)
+                          .append("div")
+                          .attr("id", "parent")
+                          .attr("class", "RCSParent");
+
+    let flexRCS = accessToRef.append("div")
+                    .attr("width", "100%")
+                    .attr("height", "50%")
+                    .attr("class", "flexRCS");
+
+    flexRCS.append("svg")
+      .attr("width", w)
+      .attr("height", h)
+      .attr("id", "frame")
+      .style("float", "left");
+
+    flexRCS.append("svg")
+      .attr("width", w)
+      .attr("height", h)
+      .attr("id", "frame2")
+      .style("float", "left");
+
+    d3.json("data/states.json").then(states => {
+    d3.csv("data/restaurantData.csv").then(function(cities) {
+      console.log(states);
+      console.log(cities);
+      createMap(states, cities, w, h);
+    });
+    });
+
   }
 
   componentWillUnmount() {
     window.addEventListener("resize", this.handleResize);
   } 
-  
-  render() {
 
+  render() {
     return <div>
-              <h4>RestrauntCaseStudy Component</h4>
-           </div>
+              <h3>Case Study: Independent Restaurants</h3>
+              <h4>How has Covid-19 impacted the United States' top restaurants? Using data collected from Restaurant Business Magazine's</h4>
+              <h4>Top 100 Independents, the following viz was created. Explore the restaurant map to see how America's</h4>
+              <h4>most successful restaurants have been impacted by the pandemic in terms of both sales and meals served.</h4>
+              <div ref={this.myRef}>
+              </div>
+            </div>
   }
 } 
 
