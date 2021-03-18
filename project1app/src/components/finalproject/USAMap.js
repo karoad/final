@@ -193,11 +193,16 @@ class USAMap extends Component {
 
   render() {
     return <div>
-              <h4>USA Map Component</h4>
+              <h4>Visualizes <a href="https://www.opentable.com/state-of-industry">Open Tables</a> similarly named dataset which captures the percent in 
+              which resturaunts in a given state are able to reopen with similar reservation performance with 2019 as a baseline. The higher the percentage the better resturaunts are performing as they were relatively prior to the COVID-19 pandemic. This study only covers the states of California,
+              Florida, Illinois, Massachusetts, New Jersey, Pennsylvania, and Texas. Below you can select dates starting on May 1st, 2020 and up to March 16th, 2021 from the drop down menu.</h4>
               <div className="mapUSA" ref={this.myRef}></div>
               <div className="USALB">
                 <select id="mapButton"></select>
                 <svg id="legend"></svg>
+              </div>
+              <div>
+              
               </div>  
            </div>
   }

@@ -64,8 +64,12 @@ class FinalPageView extends React.Component{
         return(
             <div>
                 <HeaderBar/>
+                <h1>Seated Diners at Restaurants Open for Reservations Across the United States</h1>
+                <USAMap></USAMap>                
+
                   <br></br>
                   <br></br>
+
                 <FadeInSection>
                   <IndustryEffects></IndustryEffects>
                 </FadeInSection>
