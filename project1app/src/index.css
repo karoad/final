@@ -12,6 +12,23 @@ code {
     monospace;
 }
 
+h3, h4{
+  margin:0;
+  padding: 0;
+}
+
+#parent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flexRCS{
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+}
+
 .fade-in-section {
   opacity: 0;
   transform: translateY(100%);

@@ -4,6 +4,7 @@ import HeaderBar from '../components/HeaderBar'
 import USAMap from '../components/finalproject/USAMap'
 import IndustryEffects from '../components/finalproject/IndustryEffects'
 import RestrauntCaseStudy from '../components/finalproject/RestrauntCaseStudy'
+import { Fade } from '@material-ui/core';
 
 function FadeInSection(props) {
     const [isVisible, setVisible] = React.useState(false);
@@ -48,22 +49,11 @@ class FinalPageView extends React.Component{
       let w = windowWidth / 2;
       let h = windowHeight / 2; 
       //Create Background Region
-      let svg1 = d3.select(this.svgTest1.current)
-        .append("svg")
-        .attr("width", w)
-        .attr("height", h)
-        .style("background-color", "green");
-
-      let svg2 = d3.select(this.svgTest2.current)
-        .append("svg")
-        .attr("width", w)
-        .attr("height", h)
-        .style("background-color", "blue");
 
       let svg3 = d3.select(this.svgTest3.current)
         .append("svg")
         .attr("width", w)
-        .attr("height", 2*h)
+        .attr("height", h+h/2)
         .style("background-color", "red");
     }
 
@@ -74,11 +64,14 @@ class FinalPageView extends React.Component{
         return(
             <div>
                 <HeaderBar/>
-                <h1>Title</h1>
-                <USAMap></USAMap>                
+                  <br></br>
                 <FadeInSection>
-                  <h2>Subtitle</h2>
-                <IndustryEffects></IndustryEffects>
+                  <h2>IndustryEffects</h2>
+                  <IndustryEffects></IndustryEffects>
+                </FadeInSection>                 
+                <FadeInSection>
+                  <h2>RestrauntCaseStudy</h2>
+                  <RestrauntCaseStudy></RestrauntCaseStudy>
                 </FadeInSection>
                 <FadeInSection>
                   <h2>Subtitle</h2>

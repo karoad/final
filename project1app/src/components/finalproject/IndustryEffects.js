@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as d3 from 'd3';
 
 let updatePoints = (data, line, xscaleScatter, yscaleScatter) => {
+  
   //data points
   var margin = {top: 10, right: 30, bottom: 30, left: 60};
   var scatterSvg = d3.select("#scatterPlot");
@@ -54,12 +55,14 @@ let updatePoints = (data, line, xscaleScatter, yscaleScatter) => {
     .attr("stroke", "black")
     .attr("stroke", "gray")
     .attr("stroke-width", 3)
-    .style("opacity", function(d){return 0.7;})
-    .attr("fill", "none")
-    .on('mouseover', function(mouseEvent, val) {
-      //display datapoint info somewhere
-      d3.select(this).attr('stroke-width', 7).attr('stroke', 'steelblue').style("opacity", function(d){return 1;});
-    })
+    .attr("yearSet", currYear)
+        .style("opacity", function(d){return 0.7;})
+        .attr("fill", "none")
+        .on('mouseover', function(mouseEvent, val) {
+          //display datapoint info somewhere
+          d3.select(this).attr('stroke-width', 7).attr('stroke', '#a5c9bd').style("opacity", function(d){return 1;});
+          d3.select("#yearText").text(d3.select(this).attr("yearSet"));
+        })
     .on('mouseout', function(mouseEvent, val) {
       //consider undoing the above  
       d3.select(this).attr('stroke-width', 3).attr('stroke', 'gray').style("opacity", function(d){return 0.7;});
@@ -142,7 +145,21 @@ class IndustryEffects extends Component {
     // .attr("r", function() { return h/6 })
     // .attr("fill", "red")
     // .attr('transform', 'translate(' + w/4+ ',' + h/6  + ')');
+    var totalEmployeesText = "The drop in employees in 2020 was dramatic in the restaurant service industry: the number of workers was cut in half from 1/20-4/20.\n The total employees axis is in thousands of employees.";
+    var unemploymentText = "The increase in unemployment was sharp in the 2020 pandemic";
+    var totalHoursWorkedText = "Surprisingly, the total number of hours worked did not change much over the course of 2020. \n This means that the workers who stayed employed  were relatively uneffected for their work";
     
+    var yearText = d3.select(".industry").append("div")
+      .attr("width", 80)
+      .attr("height", 40)
+      .attr("padding-top", "5px;")
+      .attr("padding-bottom", "5px;")
+        .append("text")
+        .attr("x", 0)
+        .attr("y", 0)  
+        .attr("id", "yearText")
+        .text("Select a year");
+
     var margin = {top: 10, right: 30, bottom: 30, left: 60};
     var width = w - margin.left - margin.right;
     var height = h - margin.top - margin.bottom;
@@ -161,6 +178,17 @@ class IndustryEffects extends Component {
     var xAxis = scatterSvg.append("g")
     .attr("transform", "translate("+0+"," + height + ")")
     .call(d3.axisBottom(xscaleScatter));
+
+    var summary = d3.select(".industry").append("div")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("padding-top", "5px;")
+      .attr("padding-bottom", "5px;")
+        .append("text")
+        .attr("x", 0)
+        .attr("y", 0)  
+        .attr("id", "summaryText")
+        .text(totalEmployeesText);
     
     var yscaleScatterTotalEmployees = d3.scaleLinear()
         .domain([6000,13000])
@@ -223,16 +251,25 @@ class IndustryEffects extends Component {
         .attr("value", function (d) { return d; });
         
       
-      updatePoints(totalEmployeesData, totalEmployeesLine, xscaleScatter, yscaleScatterTotalEmployees);
+      updatePoints(totalEmployeesData, totalEmployeesLine, xscaleScatter, yscaleScatterTotalEmployees, totalEmployeesText);
 
     d3.select("#selectButton").on("change", function(d) {
       // recover the option that has been chosen
       var selectedOption = d3.select(this).property("value")
       // run the updateChart function with this selected option
-      if (selectedOption == "Total Employees"){ yAxis.call(d3.axisLeft(yscaleScatterTotalEmployees)); updatePoints(totalEmployeesData, totalEmployeesLine, xscaleScatter, yscaleScatterTotalEmployees); }
-      else if (selectedOption == "Unemployment") {yAxis.call(d3.axisLeft(yscaleScatterUnemployment)); updatePoints(unemploymentData, unemploymentLine, xscaleScatter, yscaleScatterUnemployment);}
-      else { yAxis.call(d3.axisLeft(yscaleScatterHoursWorked)); updatePoints(avgWeeklyHours, avgWeeklyHoursLine, xscaleScatter, yscaleScatterHoursWorked);}
-      }); // corresponding value returned by the button
+      if (selectedOption == "Total Employees"){
+         yAxis.call(d3.axisLeft(yscaleScatterTotalEmployees));
+         updatePoints(totalEmployeesData, totalEmployeesLine, xscaleScatter, yscaleScatterTotalEmployees);
+         d3.select("#summaryText").text(totalEmployeesText); }
+      else if (selectedOption == "Unemployment") {
+        yAxis.call(d3.axisLeft(yscaleScatterUnemployment)); 
+        updatePoints(unemploymentData, unemploymentLine, xscaleScatter, yscaleScatterUnemployment);
+        d3.select("#summaryText").text(unemploymentText); }
+      else { 
+        yAxis.call(d3.axisLeft(yscaleScatterHoursWorked)); 
+        updatePoints(avgWeeklyHours, avgWeeklyHoursLine, xscaleScatter, yscaleScatterHoursWorked);
+        d3.select("#summaryText").text(totalHoursWorkedText); 
+      }}); // corresponding value returned by the button
     });
    });
   });
@@ -245,7 +282,6 @@ class IndustryEffects extends Component {
 
   render() {
     return <div className="industry">
-              <h4>IndustryEffects Component</h4>
               <select id="selectButton"></select>
            </div>
   }
