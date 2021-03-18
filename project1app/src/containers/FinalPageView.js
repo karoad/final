@@ -64,9 +64,6 @@ class FinalPageView extends React.Component{
         return(
             <div>
                 <HeaderBar/>
-                <h1>Seated Diners at Restaurants Open for Reservations Across the United States</h1>
-                <USAMap></USAMap>                
-
                   <br></br>
                   <br></br>
 
@@ -77,7 +74,8 @@ class FinalPageView extends React.Component{
                 <FadeInSection>
                   <br></br>
                   <br></br>
-                  <USAMap></USAMap>
+                  <h1>Seated Diners at Restaurants Open for Reservations Across the United States</h1>
+                  <USAMap></USAMap>       
                 </FadeInSection> 
                                        
                 <FadeInSection>
@@ -85,7 +83,8 @@ class FinalPageView extends React.Component{
                   <br></br>
                   <RestrauntCaseStudy></RestrauntCaseStudy>
                 </FadeInSection>
-                <br></br>
+                
+                  <br></br>
                   <br></br>
             </div>
         );
