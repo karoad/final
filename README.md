@@ -2,7 +2,8 @@ Final Project - Interactive Data Visualization
 ===
 
 [Link to our vis](https://final-dataviz.herokuapp.com/project5)
-[Link to our screencast]()
+[Link to our screencast](https://www.youtube.com/watch?v=reC60_Ei_AE&ab_channel=LucasFernandes)
+[Link to process book](https://docs.google.com/document/d/1resK3vFESY57gr2kFaUK3E77DgP7YR-QjTMAjZ27uE0/edit?usp=sharing)
 
 **Explanation of features:**
 For Labor statistics:
