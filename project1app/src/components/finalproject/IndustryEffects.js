@@ -4,7 +4,6 @@ import * as d3 from 'd3';
 let updatePoints = (data, line, xscaleScatter, yscaleScatter) => {
   
   //data points
-  console.log(data)
   var margin = {top: 10, right: 30, bottom: 30, left: 60};
   var scatterSvg = d3.select("#scatterPlot");
   scatterSvg.selectAll("circle").remove();

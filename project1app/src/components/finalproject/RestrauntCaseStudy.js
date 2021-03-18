@@ -266,35 +266,6 @@ class RestrauntCaseStudy extends Component {
     let h = windowHeight / 2; 
     //Create Background Region
     //Access D3 this way, use width and height to size dynamically
-    let accessToRef = d3.select(this.myRef.current)
-                          .append("div")
-                          .attr("id", "parent")
-                          .attr("class", "RCSParent");
-
-    let flexRCS = accessToRef.append("div")
-                    .attr("width", "100%")
-                    .attr("height", "50%")
-                    .attr("class", "flexRCS");
-
-    flexRCS.append("svg")
-      .attr("width", w)
-      .attr("height", h)
-      .attr("id", "frame")
-      .style("float", "left");
-
-    flexRCS.append("svg")
-      .attr("width", w)
-      .attr("height", h)
-      .attr("id", "frame2")
-      .style("float", "left");
-
-    d3.json("data/states.json").then(states => {
-      d3.csv("data/restaurantData.csv").then(function(cities) {
-        console.log(states);
-        console.log(cities);
-        createMap(states, cities, w, h);
-      });
-    });
   }
 
   componentWillUnmount() {
@@ -302,15 +273,10 @@ class RestrauntCaseStudy extends Component {
   } 
   
   render() {
-    return (<div>
-              <h3>Case Study: Independent Restaurants</h3>
-              <h4>How has Covid-19 impacted the United States' top restaurants? Using data collected from Restaurant Business Magazine's</h4>
-              <h4>Top 100 Independents, the following viz was created. Explore the restaurant map to see how America's</h4>
-              <h4>most successful restaurants have been impacted by the pandemic in terms of both sales and meals served.</h4>
-              <div ref={this.myRef}>
-              </div>
-            </div>);
 
+    return <div>
+              <h4>RestrauntCaseStudy Component</h4>
+           </div>
   }
 } 
 
